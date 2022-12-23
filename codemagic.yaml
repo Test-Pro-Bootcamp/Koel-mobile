@@ -13,10 +13,13 @@ workflows:
     - name: Get Flutter packages
       script: |
         flutter packages pub get
-    - name: Build AAB with Flutter
+    - name: Build APK with Flutter
       script: |
         flutter build apk --debug
     artifacts:
       - build/**/outputs/**/*.apk
       - build/**/outputs/**/mapping.txt
       - flutter_drive.log
+    publishing:
+      scripts:
+        - echo 'Post-publish script'
