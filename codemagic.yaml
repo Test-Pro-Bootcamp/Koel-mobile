@@ -1,5 +1,5 @@
     workflows:
-     android:...
+    android-workflow:
      ios-method-1:
       name:ios signing method-1 workflow
       environment:
