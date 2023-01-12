@@ -1,25 +1,25 @@
-workflows:
-  android-workflow:
-    name: Android Workflow
-    max_build_duration: 120
-    instance_type: mac_mini_m1
-    environment:
-      android_signing:
-        - koel
+    workflows:
+     android:...
+     ios-method-1:
+      name:ios signing method-1 workflow
+      environment:
+        ios_signing:
+           distribution_type:app_store
+           bundle_identifier: io.testpro.koel
     scripts:
-      - name: Set up local.properties
-        script: |
-          echo "flutter.sdk=$HOME/programs/flutter" > "$CM_BUILD_DIR/android/local.properties"
-      - name: Get Flutter packages
-        script: |
-          flutter packages pub get
-      - name: Build APK with Flutter
-        script: |
-          flutter build apk --debug
+      -script:keychain initialize
+      -script:keychain add-certificates
+
+       -script:xcode-project use-profiles
+       -script:flutter packages pub get
+       -name :flutter build ipa and automatic versioning
+        scripts: /
+         flutter build ipa --export-options-plist=/users/builder/export_options.plist
     artifacts:
-      - build/app/outputs/bundle/release/app-release.aab
-      - build/**/outputs/**/mapping.txt
-      - flutter_drive.log
-    publishing:
-      scripts:
-        - echo 'Post-publish script'
+    -build/ios/ipa/*.ipa
+
+
+
+
+
+
