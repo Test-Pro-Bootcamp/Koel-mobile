@@ -16,7 +16,9 @@
              - Koel-profile
            certificates:
              - testpro-cm
-
+         vars:
+           XCODE_PROJECT: "Koel.xcodeproj" # <-- Put the name of your project here.
+           XCODE_SCHEME: "Koel" # <-- Put the name of your schem
        scripts:
              # ... your dependencies installation
          - script: keychain initialize
