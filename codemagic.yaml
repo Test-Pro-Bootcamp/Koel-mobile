@@ -12,7 +12,12 @@
        # ....
        environment:
          ios_signing:
-           distribution_type: app_store # or: ad_hoc | development | enterprise
+           provisioning_profiles:
+             - Koel-profile
+
+
+           certificates:
+             - Distribute_certificate
            bundle_identifier: io.testpro.koel
        scripts:
              # ... your dependencies installation
@@ -22,7 +27,7 @@
          - script: flutter packages pub get
          - name : Build ipa for distribution
            script: /
-             flutter build ipa --export-options-plist="---/build/ios/ipa/*.ipa"
+             flutter build ipa --export-options-plist=/users/builder/export_options.plist
        artifacts:
          - build/ios/ipa/*.ipa
 
