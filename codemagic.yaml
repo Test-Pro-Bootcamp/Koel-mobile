@@ -17,7 +17,7 @@
 
 
            certificates:
-             - Distribute_certificate
+             - testpro-cm
            bundle_identifier: io.testpro.koel
        scripts:
              # ... your dependencies installation
