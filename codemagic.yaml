@@ -22,7 +22,7 @@
          - script: flutter packages pub get
          - name : Build ipa for distribution
            script: /
-             flutter build ipa --export-options-plist="---/build/ios/archive/ProjectName.xcarchive/Info.plist" // Add abosulte path(Exact location of file in disk)
+             flutter build ipa --export-options-plist="---/build/ios/archive/ProjectName.xcarchive/Info.plist"
        artifacts:
          - build/ios/ipa/*.ipa
          - /tmp/xcodebuild_logs/*.log
