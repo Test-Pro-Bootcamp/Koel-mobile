@@ -1,25 +1,34 @@
-    workflows:
-    android-workflow:
-     ios-method-1:
-      name:ios signing method-1 workflow
-      environment:
-        ios_signing:
-           distribution_type:app_store
+
+
+
+
+
+
+
+
+   workflows:
+     ios-workflow:
+       name: iOS Workflow
+       # ....
+       environment:
+         ios_signing:
+           distribution_type: app_store # or: ad_hoc | development | enterprise
            bundle_identifier: io.testpro.koel
-    scripts:
-      -script:keychain initialize
-      -script:keychain add-certificates
-
-       -script:xcode-project use-profiles
-       -script:flutter packages pub get
-       -name :flutter build ipa and automatic versioning
-        scripts: /
-         flutter build ipa --export-options-plist=/users/builder/export_options.plist
-    artifacts:
-    -build/ios/ipa/*.ipa
-
-
-
-
-
-
+       scripts:
+             # ... your dependencies installation
+         - script: keychain initialize
+         - script: keychain add-certificates
+         - script: xcode-project use-profiles
+         - script: flutter packages pub get
+         - name : flutter build ipa and automatic versioning
+           script: /
+             flutter build ipa --export-options-plist=/users/builder/export_options.plist
+       artifacts:
+         - build/ios/ipa/*.ipa
+         - /tmp/xcodebuild_logs/*.log
+         - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
+         - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+       publishing:
+         email:
+           recipients:
+             - limopato254@gmail.com
