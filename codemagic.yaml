@@ -19,8 +19,7 @@
 
        scripts:
              # ... your dependencies installation
-         - script: keychain initialize
-         - script: keychain add-certificates
+
          - script: xcode-project use-profiles
          - script: flutter packages pub get
          - name : Build ipa for distribution
