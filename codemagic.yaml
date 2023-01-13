@@ -22,7 +22,7 @@
          - script: flutter packages pub get
          - name : Build ipa for distribution
            script: /
-             flutter build ipa --export-options-plist=/users/builder/export_options.plist
+             flutter build ipa --export-options-plist=absolute/path/to/ExportOptions.plist
        artifacts:
          - build/ios/ipa/*.ipa
          - /tmp/xcodebuild_logs/*.log
