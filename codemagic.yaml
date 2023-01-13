@@ -14,11 +14,9 @@
          ios_signing:
            provisioning_profiles:
              - Koel-profile
-
-
            certificates:
-             - testpro
-           bundle_identifier: io.testpro.koel
+             - testpro-cm
+
        scripts:
              # ... your dependencies installation
          - script: keychain initialize
