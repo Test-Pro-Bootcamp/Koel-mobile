@@ -22,7 +22,7 @@
          - script: flutter packages pub get
          - name : Build ipa for distribution
            script: /
-             flutter build ipa
+             xcode-project build-ipa --project "$XCODE_PROJECT" --scheme "$XCODE_SCHEME"
        artifacts:
          - build/ios/ipa/*.ipa
          - /tmp/xcodebuild_logs/*.log
