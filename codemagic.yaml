@@ -1,3 +1,30 @@
+workflows:
+  ios-workflow:
+    name: iOS Workflow
+    # ....
+    environment:
+      ios_signing:
+        provisioning_profiles:
+          - Koel-profile
+        certificates:
+          - testpro-cm
+
+    scripts:
+      # ... your dependencies installation
+      - script: keychain initialize
+      - script: keychain add-certificates
+      - script: xcode-project use-profiles
+      - script: flutter packages pub get
+      - name : Build ipa for distribution
+        script: /
+          flutter build ipa --export-options-plist=/users/builder/export_options.plist
+    artifacts:
+      - build/ios/ipa/*.ipa
+
+    publishing:
+      email:
+        recipients:
+          - limopato254@gmail.com
 
 
 
@@ -6,32 +33,3 @@
 
 
 
-   workflows:
-     ios-workflow:
-       name: iOS Workflow
-       # ....
-       environment:
-         ios_signing:
-           provisioning_profiles:
-             - Koel-profile
-           certificates:
-             - testpro-cm
-         vars:
-           XCODE_PROJECT: "Koel.xcodeproj" # <-- Put the name of your project here.
-           XCODE_SCHEME: "Koel" # <-- Put the name of your schem
-       scripts:
-             # ... your dependencies installation
-         - script: keychain initialize
-         - script: keychain add-certificates
-
-         - script: flutter packages pub get
-         - name : Build ipa for distribution
-           script: /
-             flutter build ipa --export-options-plist=/users/builder/export_options.plist
-       artifacts:
-         - build/ios/ipa/*.ipa
-
-       publishing:
-         email:
-           recipients:
-             - limopato254@gmail.com
