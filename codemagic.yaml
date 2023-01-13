@@ -22,12 +22,10 @@
          - script: flutter packages pub get
          - name : Build ipa for distribution
            script: /
-             flutter build ipa --export-options-plist="---/build/ios/archive/ProjectName.xcarchive/Info.plist"
+             flutter build ipa --export-options-plist="---/build/ios/ipa/*.ipa"
        artifacts:
          - build/ios/ipa/*.ipa
-         - /tmp/xcodebuild_logs/*.log
-         - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.app
-         - $HOME/Library/Developer/Xcode/DerivedData/**/Build/**/*.dSYM
+
        publishing:
          email:
            recipients:
