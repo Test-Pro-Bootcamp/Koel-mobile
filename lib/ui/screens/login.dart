@@ -58,30 +58,30 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     AuthProvider auth = context.watch();
 
-    // Future<void> attemptLogin() async {
-    //   final form = formKey.currentState!;
-    //
-    //   if (!form.validate()) return;
-    //
-    //   form.save();
-    //   setState(() => _authenticating = true);
-    //
-    //   bool result = await auth.login(email: _email!, password: _password!);
-    //   setState(() => _authenticating = false);
-    //
-    //   if (result) {
-    //     // Store the email into local storage for easy login next time
-    //     preferences.userEmail = _email;
-    //     await auth.tryGetAuthUser();
-    //
-    //     Navigator.of(
-    //       context,
-    //       rootNavigator: true,
-    //     ).pushReplacementNamed(DataLoadingScreen.routeName);
-    //   } else {
-    //     throw Error();
-    //   }
-    // }
+    Future<void> attemptLogin() async {
+      final form = formKey.currentState!;
+    
+      if (!form.validate()) return;
+    
+      form.save();
+      setState(() => _authenticating = true);
+    
+      bool result = await auth.login(email: _email!, password: _password!);
+      setState(() => _authenticating = false);
+    
+      if (result) {
+        // Store the email into local storage for easy login next time
+        preferences.userEmail = _email;
+        await auth.tryGetAuthUser();
+    
+        Navigator.of(
+          context,
+          rootNavigator: true,
+        ).pushReplacementNamed(DataLoadingScreen.routeName);
+      } else {
+        throw Error();
+      }
+    }
 
     InputDecoration decoration({String? label, String? hint}) {
       return InputDecoration(
@@ -126,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: const Text('Log In'),
       onPressed: () async {
         try {
-          // await attemptLogin();
+          await attemptLogin();
         } catch (error) {
           await showErrorDialog(context);
         }
@@ -158,7 +158,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: _authenticating ? spinnerWidget : submitButton,
-                    )
+                    ),
+                    SizedBox(height: 10,),
+                    Text("v 1.0.3",style: TextStyle(color: Colors.grey[600]),),
                   ].expand((widget) => [widget, const SizedBox(height: 12)]),
                 ],
               ),
