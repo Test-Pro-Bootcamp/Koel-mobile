@@ -158,7 +158,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: _authenticating ? spinnerWidget : submitButton,
-                    )
+                    ),
+                      SizedBox(height: 10,),
+                    Text("v 1.0.9",style: TextStyle(color: Colors.grey[600]),),
                   ].expand((widget) => [widget, const SizedBox(height: 12)]),
                 ],
               ),
